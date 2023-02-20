@@ -1,0 +1,32 @@
+/* ID样式 */
+
+/* 标签样式表 */
+p{
+    color:red;
+}
+div{
+    color:gray;
+}
+
+/* 类样式 */
+.f20{
+    font-size:24px;
+}
+
+/* ID样式 */
+#p4{
+	background-color:yellow;
+	font-size:20px;
+	font-weight:bolder;
+	font-style:italic;
+	font-family:"黑体";
+}
+/* 组合样式 */
+div p{
+	color:blue;
+}
+
+div .f32{
+	font-size:32px;
+	font-family:"黑体";
+}

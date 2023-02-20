@@ -1,0 +1,127 @@
+* {
+    color: threeddarkshadow;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #808080;
+}
+
+div {
+    position: relative;
+    float: left;
+}
+
+#div_container {
+    /*最外围的容器属性*/
+    width: 90%;
+    height: 100%;
+    border: 5px solid cornflowerblue;
+    margin-left: 5%;
+    float: left;
+    background-color: lemonchiffon;
+    /*边界半径*/
+    border-radius: 15px;
+}
+
+#div_fruit_list {
+    width: 100%;
+    border: 2px solid red;
+}
+
+#tbl_fruit {
+    width: 80%;
+    line-height: 28px;
+    margin-top: 120px;
+    margin-left: 10%;
+}
+
+/*表格及其内部属性设置*/
+#tbl_fruit, #tbl_fruit tr, #tbl_fruit th, #tbl_fruit td {
+    border: 1px solid gray;
+    /*边框合并*/
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+    font-family: "黑体";
+    font-weight: lighter;
+
+}
+
+/*表头属性*/
+.w20 {
+    width: 20%;
+}
+
+/*图片属性*/
+.delImg {
+    width: 24px;
+    height: 24px;
+}
+
+.btn {
+    border: 1px solid lightgray;
+    width: 80px;
+    height: 24px;
+}
+
+#add_fruit_div {
+    border: 0px solid red;
+    width: 40%;
+    margin-left: 30%;
+}
+
+#add_fruit_tbl {
+    margin-top: 32px;
+    width: 80%;
+    margin-left: 10%;
+    border-collapse: collapse;
+}
+
+#add_fruit_tbl, #add_fruit_tbl tr, #add_fruit_tbl td {
+    border: 1px solid lightgray;
+    text-align: center;
+    line-height: 28px;
+}
+
+#tbl_fruit {
+    width: 60%;
+    line-height: 28px;
+    margin-top: 16px;
+    margin-left: 20%;
+
+}
+
+#tbl_fruit, #tbl_fruit tr, #tbl_fruit th, #tbl_fruit td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+    font-family: "黑体";
+    font-weight: lighter;
+
+}
+
+.w30 {
+    width: 30%;
+}
+
+.input {
+    padding-left: 4px;
+    border: 1px solid lightgray;
+    width: 90%;
+}
+
+.center {
+    text-align: center;
+    border: 1px solid red;
+}
+
+.f30 {
+    font-size: 30px;
+}

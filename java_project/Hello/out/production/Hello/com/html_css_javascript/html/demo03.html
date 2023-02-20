@@ -1,0 +1,62 @@
+<!--表单标签的学习-->
+
+<html>
+	<head>
+		<title>表单标签的学习</title>
+		<meta charset="UTF-8">
+		
+	</head>
+	<body>
+	<!-- action 你要提交到的目的地，即点击 submit 类型的按钮之后，会发送给 demo04.html 组件
+	method 为发送方式，有 get 和 post，前者会将你输入的信息显示在跳转之后的网页的地址栏里面，后者则不会-->
+		<form action="demo04.html" method="post">
+<!--		<form action="http://www.baidu.com" method="post">-->
+			昵称：<input type="text" name="nickName" value="请输入你的昵称"/><br/>
+			密码：<input type="password" name="pwd"/><br/>
+			性别：<input type="radio" name="gender" value="male"/>男
+	  			  <input type="radio" name="gender" value="female" checked/>女<br/>
+			爱好：<input type="checkbox" name="hobby" value="basketball"/>篮球
+				  <input type="checkbox" name="hobby" value="football" checked/>足球
+				  <input type="checkbox" name="hobby" value="earth" checked/>地球<br/>
+			星座：<select name="star">
+					<option value="1">白羊座</option>
+					<option value="2">金牛座</option>
+					<option value="3">双子座</option>
+					<option value="4">天蝎座</option>
+					<option value="5">天秤座</option>
+					<option value="6">双鱼座</option>
+					<option value="7">巨蟹座</option>
+					<option value="8">狮子座</option>
+					<option value="9">水瓶座</option>
+					<option value="10">射手座</option>
+					<option value="11">处女座</option>
+					<option value="12">摩羯座</option>
+					<option value="null" selected>请选择你的星座...</option>
+				  </select><br/>
+
+			备注：<textarea name="remark" rows="4" cols="50"></textarea><br/>
+			<input type="submit" value=" 注 册 "/>
+			<input type="reset" value="重置"/>
+			<input type="button" value="这是一个普通按钮"/>
+		</form>
+	</body>
+</html>
+<!--
+18) 表单	form
+
+19) input type="text" 表示文本框 ， 其中 name属性必须要指定，否则这个文本框的数据将来是不会发送给服务器的
+	input type="password" 表示密码框
+
+	input type="radio" 表示单选按钮。需要注意的是，name属性值保持一致，这样才会有互斥的效果;
+	input type="checkbox" 表示复选框。name属性值建议保持一致，这样将来我们服务器端获取值的时候获取的是一个数组
+	单选框和复选框可以通过checked属性设置默认选中的项
+
+	select 表示下拉列表。每一个选项是option，其中value属性是发送给服务器的值 , selected表示默认选中的项
+
+	textarea 表示多行文本框（或者称之为文本域）,它的value值就是开始结束标签之间的内容
+
+	input type="submit" 表示提交按钮
+	input type="reset" 表示重置按钮
+	input type="button" 表示普通按钮
+
+-->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace为Mapper文件（DAO）的全类名-->
+<mapper namespace="com.wjd.mybatis.mapper.UserMapper">
+    <!--id要和接口方法名一致-->
+
+    <!--int insertUser();-->
+    <insert id="insertUser">
+        insert into t_user values(null,'admin','123456',23,'男','12345@qq.com')
+    </insert>
+
+    <!--void updateUser();-->
+    <insert id="updateUser">
+        update t_user set username='root',password='123' where id = 3
+    </insert>
+
+    <!--int deleteUser();-->
+    <delete id="deleteUser">
+        delete from t_user where id = 3
+    </delete>
+
+    <!--User getUserById();-->
+    <select id="getUserById" resultType="com.wjd.mybatis.pojo.User">
+        select * from t_user where id = 2
+    </select>
+
+    <!--List<User> getUserList();-->
+    <select id="getAllUser" resultType="com.wjd.mybatis.pojo.User">
+        select * from t_user
+    </select>
+
+</mapper>

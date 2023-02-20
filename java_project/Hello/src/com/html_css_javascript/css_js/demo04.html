@@ -1,0 +1,61 @@
+<!--加上下面这句是遵循 HTML5 标准-->
+<!--<!DOCTYPE html>-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css">
+			body{
+				margin:0;
+				padding:0;
+				background-color:#808080;
+			}
+			div{
+				position:relative;
+				font-size:24px;
+			}
+			p{
+				font-size:24px;
+				color:blue;
+			}
+			#div_top{
+				background-color: orange;
+				height:20%;
+			}
+			#div_left{
+				background-color: greenyellow;
+				height:80%;
+				width:20%;
+				float:left;
+			}
+			#div_main{
+				background-color: whitesmoke;
+				height:70%;
+				float:left;
+				width:80%;
+			}
+			#div_bottom{
+				background-color: sandybrown;
+				height:10%;
+				width:80%;
+				float:left;
+			}
+			#div_container{
+				width:90%;
+				height:100%;
+				border:0px solid blue;
+				margin-left:5%;
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- div_container 最外层的容器-->
+		<div id="div_container">
+			<p>最外层容器</p>
+			<div id="div_top">div_top</div>
+			<div id="div_left">div_left</div>
+			<div id="div_main">div_main</div>
+			<div id="div_bottom">div_bottom</div>
+		</div>
+	</body>
+</html>
