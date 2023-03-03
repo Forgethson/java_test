@@ -1,0 +1,7 @@
+spring:
+  rabbitmq:
+    host: 192.168.29.128 #主机ip
+    port: 5672 #端口
+    username: admin
+    password: 123456
+    virtual-host: /

@@ -1,6 +1,8 @@
 package com.leetcode.to_offer;
 
 
+import java.util.HashMap;
+
 /**
  * @author Jianda Wang
  * @version 1.0
@@ -99,27 +101,19 @@ class TreeNode {
  * }
  */
 class Solution {
-    public int lastRemaining(int n, int m) {
-        if (m==1) return n-1;
-        int[] nums = new int[n];
+    public int majorityElement(int[] nums) {
+        if (nums.length == 1) return nums[0];
+        HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            nums[i] = i;
-        }
-        int count = n - 1, x = 0;
-        while (count > 0) {
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] == -1) continue;
-                if (x % m == (m - 1)) {
-                    nums[i] = -1;
-                    count--;
-                }
-                x++;
+            int cur = nums[i];
+            if (!map.containsKey(cur)) {
+                map.put(cur, 1);
+                continue;
             }
+            map.put(cur, map.get(cur) + 1);
+            if (map.get(cur) > nums.length / 2) return cur;
         }
-        for (int num : nums) {
-            if (num != -1) return num;
-        }
-        return -1;
+        return 0;
     }
 }
 
