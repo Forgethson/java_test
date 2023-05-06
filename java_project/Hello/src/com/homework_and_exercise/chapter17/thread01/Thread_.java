@@ -10,13 +10,16 @@ package com.homework_and_exercise.chapter17.thread01;
  */
 public class Thread_ {
     public static void main(String[] args) throws InterruptedException {
+        // Cat继承了Thread
         Cat cat = new Cat();
         cat.start();
 
+        // Dog实现了Runnable
         Dog dog = new Dog();
         Thread thread = new Thread(dog);
         thread.start();
 
+        // Tiger实现了Runnable，ThreadProxy不强制实现Runnable
         ThreadProxy threadProxy = new ThreadProxy(new Tiger());
         threadProxy.start();
 
@@ -29,10 +32,10 @@ public class Thread_ {
     }
 }
 
-class ThreadProxy implements Runnable {
+class ThreadProxy  {
 
     private Runnable target = null;
-    @Override
+//    @Override
     public void run() {
         if (target != null) {
             target.run();
@@ -61,7 +64,7 @@ class Cat extends Thread {
     @Override
     public void run() {
         while (loop) {
-            System.out.println("喵喵，我是小羽妹" + (times++));
+            System.out.println("喵喵，我是小m" + (times++));
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -83,7 +86,7 @@ class Dog implements Runnable {
     @Override
     public void run() {
         while (loop) {
-            System.out.println("汪汪，我是小羽妹" + (times++));
+            System.out.println("汪汪，我是小g" + (times++));
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {
@@ -106,7 +109,7 @@ class Tiger implements Runnable {
     @Override
     public void run() {
         while (true) {
-            System.out.println("吼吼，我是小羽妹" + (times++));
+            System.out.println("吼吼，我是小lh" + (times++));
             try {
                 Thread.sleep(500);
             } catch (InterruptedException e) {

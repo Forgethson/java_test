@@ -28,7 +28,7 @@ public class ProxyFactory {
         Class<?>[] interfaces = target.getClass().getInterfaces();
         InvocationHandler h = new InvocationHandler() {
             @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            public Object invoke(Object proxy, Method method, Object[] args) {
                 Object result = null;
                 try {
                     System.out.println("日志，方法："+method.getName()+"，参数："+ Arrays.toString(args));

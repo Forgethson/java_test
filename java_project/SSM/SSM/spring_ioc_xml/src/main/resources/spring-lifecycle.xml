@@ -9,6 +9,8 @@
         <property name="password" value="123456"></property>
         <property name="age" value="23"></property>
     </bean>
+<!--    <bean id="student" class="com.wjd.spring.pojo.Student">-->
+<!--    </bean>-->
 
     <bean id="myBeanPostProcessor" class="com.wjd.spring.process.MyBeanPostProcessor"></bean>
 

@@ -1,7 +1,10 @@
 package com.leetcode.to_offer;
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author Jianda Wang
@@ -10,25 +13,31 @@ import java.util.HashMap;
  */
 public class main {
     public static void main(String[] args) {
-//        int[][] a = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-//        String str = "abaccdeff";
-//        int[] a = new int[]{1, 2, 1, -1, -7};
-//        int[] a = new int[]{0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11};
-        int[] a = new int[]{3, 4, 5, 1, 2};
-        int[] b = new int[]{4, 1};
-//        LinkedList linkedList = new LinkedList();
-        Solution solution = new Solution();
-        solution.lastRemaining(5, 1);
-//        solution.isSubStructure()
+        int length = 16;
+        int hashcode = 102122314;
+        int ans1 = hashcode % length;
+        int ans2 = hashcode & (length - 1);
 
-        String str = "我,是,好,人,";
-        for (int i = 0; i < str.length(); i++) {
-            System.out.println(str.charAt(i));
-        }
-        String[] split = str.split(",");
 
+        System.out.println("a");
+        main main = new main();
+        main.f();
+        main.f(1);
+
+        ReentrantLock reentrantLock = new ReentrantLock();
 
     }
+
+    void f() {
+        System.out.println("void f()");
+    }
+
+
+    int f(int x) {
+        System.out.println("int f(int x)");
+        return -1;
+    }
+
 }
 
 //class LinkedList {
@@ -100,20 +109,27 @@ class TreeNode {
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
 class Solution {
-    public int majorityElement(int[] nums) {
-        if (nums.length == 1) return nums[0];
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int cur = nums[i];
-            if (!map.containsKey(cur)) {
-                map.put(cur, 1);
-                continue;
+    public List<Integer> rightSideView(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        LinkedList<TreeNode> queqe = new LinkedList<>();
+        queqe.offer(root);
+        while (!queqe.isEmpty()) {
+            int layerSize = queqe.size();
+            int layerMax = Integer.MIN_VALUE;
+            for (int i = 0; i < layerSize; i++) {
+                TreeNode cur = queqe.poll();
+                layerMax = Math.max(layerMax, cur.val);
+                if (cur.left != null)
+                    queqe.offer(cur.left);
+                if (cur.right != null)
+                    queqe.offer(cur.right);
+                if (i == layerSize - 1) res.add(cur.val);
             }
-            map.put(cur, map.get(cur) + 1);
-            if (map.get(cur) > nums.length / 2) return cur;
         }
-        return 0;
+        return res;
     }
 }
 

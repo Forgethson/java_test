@@ -7,6 +7,7 @@ package com.homework_and_exercise.chapter17.thread02;
  */
 public class ThreadState_ {
     public static void main(String[] args) throws InterruptedException {
+        // T extends Thread
         T t = new T();
         System.out.println(t.getName() + " 状态 " + t.getState());
         t.start();

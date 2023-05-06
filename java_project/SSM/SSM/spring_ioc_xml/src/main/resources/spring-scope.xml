@@ -9,7 +9,8 @@
         singleton（单例）：表示获取该bean所对应的对象都是同一个
         prototype（多例）：表示获取该bean所对应的对象都不是同一个
     -->
-    <bean id="student" class="com.wjd.spring.pojo.Student" scope="singleton">
+<!--    <bean id="student" class="com.wjd.spring.pojo.Student" scope="singleton">-->
+    <bean id="student" class="com.wjd.spring.pojo.Student" scope="prototype">
         <property name="sid" value="1001"></property>
         <property name="sname" value="张三"></property>
     </bean>

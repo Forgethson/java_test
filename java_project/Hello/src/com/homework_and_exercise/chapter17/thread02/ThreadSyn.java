@@ -16,6 +16,15 @@ public class ThreadSyn {
         thread2.start();
         thread3.start();
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+                    System.out.println(i);
+                }
+            }
+        }).start();
+
     }
 }
 
