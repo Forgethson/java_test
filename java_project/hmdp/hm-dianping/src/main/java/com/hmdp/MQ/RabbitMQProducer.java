@@ -21,6 +21,10 @@ public class RabbitMQProducer {
         this.rabbitTemplate.convertAndSend(EXCHANGE_NAME, "seckill", JSONObject.toJSONString(voucherOrder));
     }
 
+//    public void cacheSend(Long voucherOrderId) {
+//        this.rabbitTemplate.convertAndSend(EXCHANGE_NAME, "seckill", voucherOrderId.toString());
+//    }
+
     public void sendTest(Map<String, Object> message) {
         this.rabbitTemplate.convertAndSend(EXCHANGE_NAME, "seckill", message);
     }

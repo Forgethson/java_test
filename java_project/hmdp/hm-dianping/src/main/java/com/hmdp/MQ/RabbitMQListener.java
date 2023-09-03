@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.Map;
 
+import static com.hmdp.config.RabbitMQConfig.SECKILL_CONTAINER_FACTORY_NAME;
 import static com.hmdp.config.RabbitMQConfig.SECKILL_QUEUE_NAME;
 
 @Component
@@ -28,9 +29,13 @@ public class RabbitMQListener {
     public void seckillListener(VoucherOrder voucherOrder) {
         voucherOrderService.createVoucherOrder(voucherOrder);
     }*/
-    @RabbitListener(queues = SECKILL_QUEUE_NAME)
+    @RabbitListener(queues = SECKILL_QUEUE_NAME/*, containerFactory = SECKILL_CONTAINER_FACTORY_NAME*/)
     public void seckillListener(String JSONVoucherOrder) {
         VoucherOrder voucherOrder = JSONObject.parseObject(JSONVoucherOrder, VoucherOrder.class);
-        voucherOrderService.createVoucherOrder(voucherOrder);
+//        try {
+            voucherOrderService.createVoucherOrder(voucherOrder);
+//        } catch (Exception e) {
+//            System.out.println("捕获异常：" + e);
+//        }
     }
 }

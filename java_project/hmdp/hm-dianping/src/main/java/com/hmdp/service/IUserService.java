@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.hmdp.dto.LoginFormDTO;
 import com.hmdp.dto.Result;
 import com.hmdp.entity.User;
+import org.springframework.web.bind.annotation.CookieValue;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -17,9 +19,13 @@ import javax.servlet.http.HttpSession;
  */
 public interface IUserService extends IService<User> {
 
-    Result sendCode(String phone, HttpSession session);
+//    Result sendCode(String phone, HttpSession session);
 
-    Result login(LoginFormDTO loginForm, HttpSession session);
+    Result sendCode(String phone);
+
+    Result login(LoginFormDTO loginForm);
+
+//    Result login(LoginFormDTO loginForm, HttpSession session, String kaptchaOwner);
 
     Result sign();
 

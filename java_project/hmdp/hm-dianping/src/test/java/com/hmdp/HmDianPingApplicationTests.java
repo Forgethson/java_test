@@ -106,7 +106,8 @@ class HmDianPingApplicationTests {
             values[j] = "user_" + i;
             if (j == 999) {
                 // 每1000个value，发送到Redis
-                stringRedisTemplate.opsForHyperLogLog().add("hl2", values);
+                Long hl2 = stringRedisTemplate.opsForHyperLogLog().add("hl2", values);
+                if(hl2 == 0) System.out.println("插入失败");
             }
         }
         // 统计数量

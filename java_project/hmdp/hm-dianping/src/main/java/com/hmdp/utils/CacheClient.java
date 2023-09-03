@@ -61,9 +61,10 @@ public class CacheClient {
             return null;
         }
 
-        // 4.不存在（json为null），根据id查询数据库
+        // 4.缓存未命中（json为null）
+        // 根据id查询数据库
         R r = dbFallback.apply(id);
-        // 5.不存在，返回错误
+        // 5.数据库未命中，返回错误
         if (r == null) {
             // 将空值写入redis
             stringRedisTemplate.opsForValue().set(key, "", CACHE_NULL_TTL, TimeUnit.MINUTES);
@@ -198,11 +199,13 @@ public class CacheClient {
         return r;
     }
 
+    // 这是缓存穿透/击穿那一块实现的简易分布式锁
     private boolean tryLock(String key) {
         Boolean flag = stringRedisTemplate.opsForValue().setIfAbsent(key, "1", 10, TimeUnit.SECONDS);
         return BooleanUtil.isTrue(flag);
     }
 
+    // 这是缓存穿透/击穿那一块实现的简易分布式锁
     private void unlock(String key) {
         stringRedisTemplate.delete(key);
     }

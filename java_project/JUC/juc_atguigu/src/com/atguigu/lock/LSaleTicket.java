@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantLock;
 //第一步  创建资源类，定义属性和和操作方法
 class LTicket {
     //票数量
-    private int number = 30;
+    private int number = 3000;
 
     //创建可重入锁
     private final ReentrantLock lock = new ReentrantLock(true);
@@ -33,22 +33,26 @@ public class LSaleTicket {
 
         LTicket ticket = new LTicket();
 
-        new Thread(() -> {
-            for (int i = 0; i < 40; i++) {
-                ticket.sale();
-            }
-        }, "AA").start();
+//        new Thread(() -> {
+//            for (int i = 0; i < 40; i++) {
+//                ticket.sale();
+//            }
+//        }, "AA").start();
+//
+//        new Thread(() -> {
+//            for (int i = 0; i < 40; i++) {
+//                ticket.sale();
+//            }
+//        }, "BB").start();
+//
+//        new Thread(() -> {
+//            for (int i = 0; i < 40; i++) {
+//                ticket.sale();
+//            }
+//        }, "CC").start();
 
-        new Thread(() -> {
-            for (int i = 0; i < 40; i++) {
-                ticket.sale();
-            }
-        }, "BB").start();
-
-        new Thread(() -> {
-            for (int i = 0; i < 40; i++) {
-                ticket.sale();
-            }
-        }, "CC").start();
+        for (int i = 0; i < 5000; i++) {
+            new Thread(ticket::sale).start();
+        }
     }
 }

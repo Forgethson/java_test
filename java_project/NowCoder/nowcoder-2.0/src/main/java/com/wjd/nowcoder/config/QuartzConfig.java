@@ -14,7 +14,7 @@ import org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;
 @Configuration
 public class QuartzConfig {
 
-    // FactoryBean可简化Bean的实例化过程:（和BeanFactory不一样，这个是IOC容器顶层接口，是IOC容器的底层实现）
+    // FactoryBean可简化Bean的实例化过程:（和BeanFactory不一样，BeanFactory是IOC容器顶层接口，是IOC容器的底层实现）
     // 1.通过FactoryBean封装Bean的实例化过程.
     // 2.将FactoryBean装配到Spring容器里.
     // 3.将FactoryBean注入给其他的Bean.

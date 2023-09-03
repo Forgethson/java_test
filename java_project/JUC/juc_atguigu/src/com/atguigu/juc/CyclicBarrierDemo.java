@@ -14,7 +14,7 @@ public class CyclicBarrierDemo {
                 new CyclicBarrier(NUMBER, () -> {
                     System.out.println("*****集齐7颗龙珠就可以召唤神龙");
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }

@@ -17,8 +17,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CookieValue;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,7 +49,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private StringRedisTemplate stringRedisTemplate;
 
     @Override
-    public Result sendCode(String phone, HttpSession session) {
+    public Result sendCode(String phone) {
         // 1.校验手机号
         if (RegexUtils.isPhoneInvalid(phone)) {
             // 2.如果不符合，返回错误信息
@@ -58,6 +61,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 4.保存验证码到 session（优化：使用Redis保存验证码，动机：访问刷新频繁，短时间失效，规避Session共享问题）
         stringRedisTemplate.opsForValue().set(LOGIN_CODE_KEY + phone, code, LOGIN_CODE_TTL, TimeUnit.MINUTES);
 
+        // 采用Cookie方式-key绑定了随机值而非电话号码
+        /*String kaptchaOwner = java.util.UUID.randomUUID().toString().replaceAll("-", "");
+        // 将验证码的归属（part of key）放入Cookie中
+        Cookie cookie = new Cookie("kaptchaOwner", kaptchaOwner);
+        cookie.setMaxAge(60);
+        cookie.setPath("api/user/login");
+        response.addCookie(cookie);
+        // 将验证码存入Redis
+        String redisKey = "kaptcha:" + kaptchaOwner;
+        stringRedisTemplate.opsForValue().set(redisKey, code, LOGIN_CODE_TTL, TimeUnit.MINUTES);*/
+
         // 5.发送验证码
         log.debug("发送短信验证码成功，验证码：{}", code);
         // 返回ok
@@ -65,7 +79,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public Result login(LoginFormDTO loginForm, HttpSession session) {
+    public Result login(LoginFormDTO loginForm) {
         // 1.校验手机号
         String phone = loginForm.getPhone();
         if (RegexUtils.isPhoneInvalid(phone)) {
@@ -74,6 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         // 3.从redis获取验证码并校验
         String cacheCode = stringRedisTemplate.opsForValue().get(LOGIN_CODE_KEY + phone);
+//        String cacheCode = stringRedisTemplate.opsForValue().get("kaptcha:" + kaptchaOwner); Cookie方式
         String code = loginForm.getCode();
         if (cacheCode == null || !cacheCode.equals(code)) {
             // 不一致，报错
